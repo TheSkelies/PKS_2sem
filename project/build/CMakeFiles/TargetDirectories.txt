@@ -1,0 +1,2 @@
+C:/Users/thesk/OneDrive/Documentos/PKS_cpp/project/build/CMakeFiles/edit_cache.dir
+C:/Users/thesk/OneDrive/Documentos/PKS_cpp/project/build/CMakeFiles/rebuild_cache.dir
