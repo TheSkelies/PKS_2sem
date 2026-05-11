@@ -7,17 +7,19 @@
 #include <limits>
 #include <string>
 
+using namespace std;
+
 void printMenu() {
-    std::cout << "\n======= СИСТЕМА УПРАВЛЕНИЯ СКЛАДОМ =======\n";
-    std::cout << "1. Добавить товар\n";
-    std::cout << "2. Редактировать товар\n";
-    std::cout << "3. Удалить товар\n";
-    std::cout << "4. Просмотреть все товары\n";
-    std::cout << "5. Приход товара\n";
-    std::cout << "6. Расход товара\n";
-    std::cout << "7. Показать товары с низким остатком\n";
-    std::cout << "8. Выйти\n";
-    std::cout << "Ваш выбор: ";
+    cout << "\n======= СИСТЕМА УПРАВЛЕНИЯ СКЛАДОМ =======\n";
+    cout << "1. Добавить товар\n";
+    cout << "2. Редактировать товар\n";
+    cout << "3. Удалить товар\n";
+    cout << "4. Просмотреть все товары\n";
+    cout << "5. Приход товара\n";
+    cout << "6. Расход товара\n";
+    cout << "7. Показать товары с низким остатком\n";
+    cout << "8. Выйти\n";
+    cout << "Ваш выбор: ";
 }
 
 int main() {
@@ -32,50 +34,50 @@ int main() {
 
     while (running) {
         printMenu();
-        std::cin >> choice;
+        cin >> choice;
 
-        if (std::cin.fail()) {
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            std::cout << "Неверный ввод. Попробуйте снова.\n";
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Неверный ввод. Попробуйте снова.\n";
             continue;
         }
 
         switch (choice) {
             case 1: {
                 int id, qty, thr;
-                std::string name;
-                std::cout << "Введите ID товара: ";
-                std::cin >> id;
-                std::cout << "Введите название: ";
-                std::cin.ignore();
-                std::getline(std::cin, name);
-                std::cout << "Введите начальное количество: ";
-                std::cin >> qty;
-                std::cout << "Введите порог низкого остатка: ";
-                std::cin >> thr;
+                string name;
+                cout << "Введите ID товара: ";
+                cin >> id;
+                cout << "Введите название: ";
+                cin.ignore();
+                getline(cin, name);
+                cout << "Введите начальное количество: ";
+                cin >> qty;
+                cout << "Введите порог низкого остатка: ";
+                cin >> thr;
                 manager.addProduct(id, name, qty, thr);
                 break;
             }
             case 2: {
                 int id, newQty, newThr;
-                std::string newName;
-                std::cout << "Введите ID товара для редактирования: ";
-                std::cin >> id;
-                std::cout << "Новое название: ";
-                std::cin.ignore();
-                std::getline(std::cin, newName);
-                std::cout << "Новое количество: ";
-                std::cin >> newQty;
-                std::cout << "Новый порог: ";
-                std::cin >> newThr;
+                string newName;
+                cout << "Введите ID товара для редактирования: ";
+                cin >> id;
+                cout << "Новое название: ";
+                cin.ignore();
+                getline(cin, newName);
+                cout << "Новое количество: ";
+                cin >> newQty;
+                cout << "Новый порог: ";
+                cin >> newThr;
                 manager.editProduct(id, newName, newQty, newThr);
                 break;
             }
             case 3: {
                 int id;
-                std::cout << "Введите ID товара для удаления: ";
-                std::cin >> id;
+                cout << "Введите ID товара для удаления: ";
+                cin >> id;
                 manager.removeProduct(id);
                 break;
             }
@@ -84,19 +86,19 @@ int main() {
                 break;
             case 5: {
                 int id, amount;
-                std::cout << "Введите ID товара: ";
-                std::cin >> id;
-                std::cout << "Количество прихода: ";
-                std::cin >> amount;
+                cout << "Введите ID товара: ";
+                cin >> id;
+                cout << "Количество прихода: ";
+                cin >> amount;
                 manager.registerIncome(id, amount);
                 break;
             }
             case 6: {
                 int id, amount;
-                std::cout << "Введите ID товара: ";
-                std::cin >> id;
-                std::cout << "Количество расхода: ";
-                std::cin >> amount;
+                cout << "Введите ID товара: ";
+                cin >> id;
+                cout << "Количество расхода: ";
+                cin >> amount;
                 manager.registerOutcome(id, amount);
                 break;
             }
@@ -105,10 +107,10 @@ int main() {
                 break;
             case 8:
                 running = false;
-                std::cout << "Выход из программы.\n";
+                cout << "Выход из программы.\n";
                 break;
             default:
-                std::cout << "Неверный пункт меню.\n";
+                cout << "Неверный пункт меню.\n";
         }
     }
     return 0;

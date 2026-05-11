@@ -1,6 +1,8 @@
 #include "Warehouse.h"
 #include <algorithm>
 
+using namespace std;
+
 bool Warehouse::addProduct(const Product& product) {
     if (findProduct(product.getId()) != nullptr) {
         return false; // id уже существует
@@ -20,7 +22,7 @@ bool Warehouse::updateProduct(int id, const Product& newData) {
 }
 
 bool Warehouse::removeProduct(int id) {
-    auto it = std::remove_if(m_products.begin(), m_products.end(),
+    auto it = remove_if(m_products.begin(), m_products.end(),
                              [id](const Product& p) { return p.getId() == id; });
     if (it != m_products.end()) {
         m_products.erase(it, m_products.end());
@@ -38,12 +40,12 @@ Product* Warehouse::findProduct(int id) {
     return nullptr;
 }
 
-const std::vector<Product>& Warehouse::getAllProducts() const {
+const vector<Product>& Warehouse::getAllProducts() const {
     return m_products;
 }
 
-std::vector<Product> Warehouse::getLowStockProducts() const {
-    std::vector<Product> low;
+vector<Product> Warehouse::getLowStockProducts() const {
+    vector<Product> low;
     for (const auto& p : m_products) {
         if (p.getQuantity() < p.getMinThreshold()) {
             low.push_back(p);
